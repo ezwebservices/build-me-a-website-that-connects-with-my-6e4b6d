@@ -1,43 +1,23 @@
-You are an AWS infrastructure engineer. Analyze the built app and set up the right Amplify Gen 2 backend resources.
+The AWS Amplify deployment FAILED. Fix ALL build errors so `npm run build` succeeds.
 
-READ the app's source code in src/ to understand what it needs, then configure backend resources.
+BUILD LOG / ERRORS:
+FAILED STEP: BUILD
+Log URL: https://aws-amplify-prod-us-east-1-artifacts.s3.us-east-1.amazonaws.com/drswqmm9mpc53/main/0000000001/BUILD/log.txt?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEIaCXVzLWVhc3QtMSJHMEUCIDg%2B%2FuZQYEiecsS9HjXWejcmCOriBp6wDjZGp3%2Fy%2Fg1QAiEAmp6QLgErclgRGdtjtFsf3%2FgpSREdiaIBSUe3Jh9seYMq1wQICxAGGgwwNzM2NTMxNzE1NzYiDFGXEyOUZfyEhElLiiq0BKl%2FrTySwz4p4k6KiD%2BLBnCJd9WLJ%2FhgGFX1t9sLOeFAlQu8KaS9O9Wk4UO2UQpUUVFOeMbQ4nXI3DGX6yY5EZn%2FKdOTYHs8628ka4%2BMurejKjf6upjlnItGiNyOh1ize%2FxUigAmlYVivQiZUnGsT%2FM9Y94ytxPr%2FS8YVRWZfs2Pt1ZyCL6%2Fjg72gkiP16ynQshdZfl8SNUhlwDMuxLjNFIZ%2F4lZ%2BCbM%2B6BTewztMWYneqcdZ9X%2BNU28%2B4qJ48rKMzJ%2FN4XATTbbJodBhygPws9IOX605YcVobjJIr6U9a%2F936%2FBod8v%2BX6O9%2BJclkzk1yT28Bd07wikitWwpd%2F99IGTYWWJ%2Fzx%2FAcHxLpab6DP4U60NLCTfYY7xITYXzkZJcExN1twUy399HVjmDNHh0Uoa7Pr8K1oSfz%2F7PKWwbBy7YkIr3NhKZPwXQqzgNFYgQECv5w0E6FkY%2FfsW%2BGe4g68l3XTxsSdIODK5sb5F4oRYS%2F7QtsNMqth3GC9BV8rsJxCZoRyyACBGyROn3Cai3gi7NQZE0mIYHWORlEYFAa5SVYvvEiZJo3yoPmRaPGZrZnSe6Wg8ignN30fEtpG25er4yXZVVGjZgw5943ZxpLnujh2qHDaJT49HtgwUs8D60hhE4C8eS7Rx8GXUJYw52RU90Q0WluU1%2BTopw7b0%2Frp28zOBHRJMvcd39wTTz5Q%2BtEAXLYGx1b5S2GWoGLk0qJzOl8S2hcjzP25arwbZ8GQSWvOKczDBoZTPBjqjAUhd3rEXUhnNKq%2FrNNuzhxycyzIpAUEPLUDEZ8mba24cbT6sXlRq5KO5ob5nFjQvkeeJCDMFsQgOS0r%2FsuINOzOKrGWui6SLvtNXnYaOBw5mKSilK6GBOOVKdaU5r5axrgga7CuGR6O%2FvTOmWyRQHD6RxGaRhXi2qWWuoq1bUwE0Kdu8IL3HRqCxFueiov6Zhz6yB1AuPKLkSd9x2xHNKtSJNdA%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260419T193426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIARCJQSGV4DW7OL5XA%2F20260419%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=3fcd49df04f6c3b25adbe777036258c5f4f3d90cc9a150ae246316a0f27d44e7
 
-AVAILABLE RESOURCES:
-
-1. AUTH (amplify/auth/resource.ts):
-import { defineAuth } from '@aws-amplify/backend';
-export const auth = defineAuth({ loginWith: { email: true } });
-// Use when app has: login, signup, user accounts, protected routes
-
-2. DATA (amplify/data/resource.ts):
-import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
-const schema = a.schema({ Todo: a.model({ content: a.string(), done: a.boolean(), owner: a.string() })
-.authorization(allow => [allow.owner(), allow.publicApiKey().to(['read'])]) });
-export type Schema = ClientSchema<typeof schema>;
-export const data = defineData({ schema, authorizationModes: { defaultAuthorizationMode: 'apiKey', apiKeyAuthorizationMode: { expiresInDays: 30 } } });
-// Use when app has: lists, items, CRUD, persistent data, real-time updates
-
-3. STORAGE (amplify/storage/resource.ts):
-import { defineStorage } from '@aws-amplify/backend';
-export const storage = defineStorage({ name: 'appFiles', access: (allow) => ({ 'uploads/*': [allow.authenticated.to(['read', 'write', 'delete'])] }) });
-// Use when app has: file uploads, images, documents, user content
-
-4. FUNCTIONS (amplify/functions/<name>/resource.ts):
-import { defineFunction } from '@aws-amplify/backend';
-export const myFunction = defineFunction({ name: 'myFunction', entry: './handler.ts' });
-// Use when app needs: webhooks, scheduled jobs, API integrations, server-side logic
-
-REGISTER ALL in amplify/backend.ts:
-import { defineBackend } from '@aws-amplify/backend';
-import { auth } from './auth/resource';
-import { data } from './data/resource';
-defineBackend({ auth, data });
+Local build output:
+[36mvite v7.3.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 2671 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                 [39m[1m[2m  0.66 kB[22m[1m[22m[2m │ gzip:   0.41 kB[22m
+[2mdist/[22m[35massets/index-BGGXBbVq.css  [39m[1m[2m342.61 kB[22m[1m[22m[2m │ gzip:  35.85 kB[22m
+[2mdist/[22m[36massets/index-DNzJMLT5.js   [39m[1m[33m906.98 kB[39m[22m[2m │ gzip: 262.82 kB[22m
+[32m✓ built in 6.87s[39m
 
 RULES:
-- Only add resources the app actually needs — don't add auth if there's no login UI
-- Define real data models matching the app's entities (not generic Todo)
-- Ensure amplify/package.json has {"type": "module"} and amplify/tsconfig.json exists
-- Run `npm run build` after changes to verify everything compiles
-- If the app is purely static (no login, no data, no uploads), remove the amplify/ folder entirely and delete amplify imports from src/
-
-PROJECT IDEA: build me a website that connects with my stripe, i can easily create products, pictures, price, handle shipping, it should be a creative modern design, its going to be for my cnc garage business. create an elegant artsy feel to the site and everything i need to run the cnc business start to finish.
+- Read the error messages carefully
+- Fix the root cause, not symptoms
+- Run `npm run build` after your fixes to verify they work
+- Do NOT change the amplify/ backend config unless the error is there
+- Common issues: missing imports, TypeScript errors, dependency issues
