@@ -37,10 +37,21 @@ try {
     stripeCheckoutUrl = rawOutputs.custom?.stripeCheckoutUrl ?? "";
     amplifyConfigured = true;
     markAmplifyConfigured();
+    console.log("[amplify] configured:", {
+      dataUrl: rawOutputs.data?.url,
+      hasAuth: !!(rawOutputs as Record<string, unknown>).auth,
+      hasStorage: !!(rawOutputs as Record<string, unknown>).storage,
+    });
   } else {
     // Keep a single-line breadcrumb so the "Client could not be generated"
     // white-screen can never recur without a clear local explanation.
-    console.warn("[amplify] skipping Amplify.configure — outputs lack data.url (placeholder or partial deploy)");
+    console.warn("[amplify] skipping Amplify.configure — outputs lack data.url", {
+      hasPlaceholder: rawOutputs.__placeholder,
+      hasData: typeof rawOutputs.data === "object",
+      dataKeys: rawOutputs.data && typeof rawOutputs.data === "object"
+        ? Object.keys(rawOutputs.data)
+        : [],
+    });
   }
 } catch (e) {
   console.warn("[amplify] could not load amplify_outputs.json:", e);
