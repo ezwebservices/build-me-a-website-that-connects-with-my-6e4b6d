@@ -17,6 +17,7 @@ const schema = a.schema({
       leadTimeDays: a.integer(),
       inventory: a.integer().default(0),
       shippingFlatCents: a.integer().default(0),
+      shippingRequired: a.boolean().default(true),
       freeShippingThresholdCents: a.integer(),
       active: a.boolean().default(true),
       featured: a.boolean().default(false),
@@ -25,8 +26,32 @@ const schema = a.schema({
     })
     .authorization((allow) => [
       allow.publicApiKey().to(["read"]),
-      allow.authenticated().to(["create", "read", "update", "delete"]),
+      allow.authenticated().to(["read"]),
+      allow.group("Admins").to(["create", "read", "update", "delete"]),
     ]),
+
+  Cart: a
+    .model({
+      owner: a.string(),
+      items: a.hasMany("CartItem", "cartId"),
+      updatedAtIso: a.string(),
+    })
+    .authorization((allow) => [allow.owner()]),
+
+  CartItem: a
+    .model({
+      cartId: a.id().required(),
+      cart: a.belongsTo("Cart", "cartId"),
+      productId: a.string().required(),
+      name: a.string().required(),
+      slug: a.string(),
+      priceCents: a.integer().required(),
+      quantity: a.integer().required(),
+      image: a.string(),
+      shippingFlatCents: a.integer(),
+      shippingRequired: a.boolean(),
+    })
+    .authorization((allow) => [allow.owner()]),
 
   Order: a
     .model({
@@ -54,7 +79,8 @@ const schema = a.schema({
     })
     .authorization((allow) => [
       allow.publicApiKey().to(["create", "read", "update"]),
-      allow.authenticated().to(["create", "read", "update", "delete"]),
+      allow.authenticated().to(["create", "read"]),
+      allow.group("Admins").to(["create", "read", "update", "delete"]),
     ]),
 
   ShopSettings: a
@@ -71,7 +97,8 @@ const schema = a.schema({
     })
     .authorization((allow) => [
       allow.publicApiKey().to(["read"]),
-      allow.authenticated().to(["create", "read", "update", "delete"]),
+      allow.authenticated().to(["read"]),
+      allow.group("Admins").to(["create", "read", "update", "delete"]),
     ]),
 
   SeedFlag: a
@@ -95,7 +122,8 @@ const schema = a.schema({
     })
     .authorization((allow) => [
       allow.publicApiKey().to(["create"]),
-      allow.authenticated().to(["create", "read", "update", "delete"]),
+      allow.authenticated().to(["read"]),
+      allow.group("Admins").to(["create", "read", "update", "delete"]),
     ]),
 });
 

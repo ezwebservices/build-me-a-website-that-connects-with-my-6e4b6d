@@ -57,6 +57,9 @@ function PreviewShell() {
             <AdminLink to="/admin/orders">Orders</AdminLink>
             <AdminLink to="/admin/inquiries">Inquiries</AdminLink>
             <AdminLink to="/admin/settings">Shop settings</AdminLink>
+            <div className="pt-3 mt-3 border-t border-ink-900/10">
+              <StudioLink />
+            </div>
           </nav>
           <div className="p-4 border-t border-ink-900/10">
             <div className="text-[10px] uppercase tracking-widest text-ink-500">
@@ -123,6 +126,39 @@ function AuthedShell() {
           </div>
         )}
       </Authenticator>
+    </div>
+  );
+}
+
+function StudioLink() {
+  const url = import.meta.env.VITE_AMPLIFY_STUDIO_URL || "";
+  if (url) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className="block px-3 py-2 rounded-lg text-sm text-ink-700 hover:bg-paper-200/60"
+      >
+        Amplify Studio ↗
+      </a>
+    );
+  }
+  return (
+    <div className="px-3 py-2 rounded-lg text-xs text-ink-500 border border-dashed border-ink-900/10">
+      <div className="font-medium text-ink-700 mb-1">Amplify Studio</div>
+      <div className="leading-relaxed">
+        Set <code className="font-mono">VITE_AMPLIFY_STUDIO_URL</code> in Amplify Hosting env vars, or open the{" "}
+        <a
+          href="https://console.aws.amazon.com/amplify/home"
+          target="_blank"
+          rel="noreferrer"
+          className="underline text-clay-400"
+        >
+          AWS Amplify console
+        </a>{" "}
+        to manage data in the Studio.
+      </div>
     </div>
   );
 }

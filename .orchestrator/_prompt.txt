@@ -1,9 +1,16 @@
 You are QA (QA Engineer). Make this specific change:
 
-Verify: `npm run build` exits 0; visiting the Studio/admin route with no amplify_outputs.json shows the deploy-instructions panel (not a crash or blank); the shop page shows labeled preview products; no console errors in production build; the DEPLOY.md instructions are accurate against the actual amplify/ files. Report pass/fail per item.
+After Engineer reports complete, verify: (1) `npm run build` exits 0; (2) with amplify_outputs.json present, the app boots with zero Amplify-configuration console errors; (3) admin (Cognito Admins group) can create a product with an uploaded image and it appears in the public shop in real time; (4) a signed-in non-admin user can add the product to cart, update qty, remove item, and cart survives reload (persisted in Data, not localStorage); (5) clicking Checkout redirects to a real Stripe Checkout URL using the test publishable/secret keys and test card 4242... completes; (6) Stripe webhook writes an Order row; (7) Studio link in admin nav opens the correct Amplify Studio URL; (8) no forbidden uses of localStorage/sessionStorage for product/cart/order/user data (grep to confirm). Produce a pass/fail report with any reproducible defects.
 
-Context: The user asked for: i cant see the the studio access and there is no shop data Preview mode
-The backend isn't connected yet
-Deploy this project with Amplify Gen 2 so that amplify_outputs.json is generated. Until then, product data and checkout cannot be loaded live — but the site design is fully rendered so you can iterate on the look and feel.
+Context: The user asked for: i cannot add items to the card and checkout with stripe test key need a full shop expereince, also cannot access studio access, only console logs i see is this but not sure if its related: index-CyiCugak.js:58 Amplify has not been configured. Please call Amplify.configure() before using this service.
+getConfig	@	index-CyiCugak.js:58
+index-CyiCugak.js:8 Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
+    at Object.get (index-CyiCugak.js:66:14574)
+    at index-CyiCugak.js:183:25631
+    at fu (index-CyiCugak.js:8:24452)
+    at ka (index-CyiCugak.js:8:42829)
+    at index-CyiCugak.js:8:41075
+    at U (index-CyiCugak.js:1:10545)
+    at MessagePort.B (index-CyiCugak.js:1:10917)
 
 Read the relevant source files, make targeted edits, and run `npm run build` to verify.
