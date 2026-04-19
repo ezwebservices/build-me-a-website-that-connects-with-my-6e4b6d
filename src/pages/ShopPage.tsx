@@ -2,14 +2,16 @@ import { useEffect, useMemo, useState } from "react";
 import { getClient, type ProductRecord } from "../lib/client";
 import { useApp } from "../context/AppContext";
 import { ProductCard } from "../components/ProductCard";
-import { ConfigWarning } from "../components/ConfigWarning";
+import { PREVIEW_PRODUCTS } from "../lib/previewProducts";
 
 type SortKey = "newest" | "priceAsc" | "priceDesc" | "name";
 
 export function ShopPage() {
   const { amplifyConfigured } = useApp();
-  const [products, setProducts] = useState<ProductRecord[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<ProductRecord[]>(
+    amplifyConfigured ? [] : PREVIEW_PRODUCTS
+  );
+  const [loading, setLoading] = useState(amplifyConfigured);
   const [category, setCategory] = useState<string>("all");
   const [sort, setSort] = useState<SortKey>("newest");
   const [query, setQuery] = useState("");
@@ -84,7 +86,14 @@ export function ShopPage() {
         </p>
       </div>
 
-      {!amplifyConfigured ? <ConfigWarning compact /> : null}
+      {!amplifyConfigured ? (
+        <div className="card p-4 text-xs text-ink-700 border-clay-500/30 mb-6">
+          <span className="eyebrow text-clay-400 mr-2">Preview mode</span>
+          <span className="text-ink-500">
+            Showing sample pieces. Deploy with Amplify Gen 2 to load your live catalog and accept orders.
+          </span>
+        </div>
+      ) : null}
 
       <div className="flex flex-wrap gap-3 items-center mb-8">
         <div className="flex flex-wrap gap-2">
@@ -124,18 +133,14 @@ export function ShopPage() {
           ))}
         </div>
       ) : filtered.length === 0 ? (
-        !amplifyConfigured ? (
-          <PreviewGrid />
-        ) : (
-          <div className="card p-12 text-center">
-            <h3 className="font-display text-2xl mb-2">Nothing to show here yet.</h3>
-            <p className="text-ink-500">
-              {products.length === 0
-                ? "The shop is empty — the maker is probably sweeping chips off the machine."
-                : "No matches. Try another filter or search term."}
-            </p>
-          </div>
-        )
+        <div className="card p-12 text-center">
+          <h3 className="font-display text-2xl mb-2">Nothing to show here yet.</h3>
+          <p className="text-ink-500">
+            {products.length === 0
+              ? "The shop is empty — the maker is probably sweeping chips off the machine."
+              : "No matches. Try another filter or search term."}
+          </p>
+        </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((p) => (
@@ -143,59 +148,6 @@ export function ShopPage() {
           ))}
         </div>
       )}
-    </div>
-  );
-}
-
-function PreviewGrid() {
-  const samples = [
-    { name: "Walnut Live-Edge Console", category: "Furniture", price: 248000, materials: "Black walnut · hand-rubbed oil finish" },
-    { name: "Machined Brass Coaster Set", category: "Tabletop", price: 16800, materials: "Polished brass · felt base" },
-    { name: "Ash & Steel Shelf Bracket", category: "Hardware", price: 9200, materials: "White ash · cold-rolled steel" },
-    { name: "Engraved Cherry Cutting Board", category: "Kitchen", price: 13400, materials: "American cherry · food-safe wax" },
-    { name: "Topographic Wall Map — Cascades", category: "Wall Art", price: 42000, materials: "Baltic birch ply · 5-layer relief" },
-    { name: "Inlaid Rosewood Jewelry Box", category: "Gifts", price: 31500, materials: "Rosewood · maple inlay · velvet" },
-  ];
-  return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {samples.map((s, i) => (
-        <div key={i} className="card overflow-hidden relative">
-          <div className="absolute top-3 left-3 z-10 text-[10px] uppercase tracking-[0.25em] px-2.5 py-1 rounded-full bg-clay-500/90 text-ink-900 font-semibold">
-            Preview
-          </div>
-          <div className="aspect-[4/5] bg-gradient-to-br from-ink-800 to-ink-900 overflow-hidden relative">
-            <svg viewBox="0 0 200 250" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id={`pg${i}`} x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#332b21" />
-                  <stop offset="1" stopColor="#0f0c09" />
-                </linearGradient>
-              </defs>
-              <rect width="200" height="250" fill={`url(#pg${i})`} />
-              <g stroke="#4a3f30" strokeWidth="1" fill="none">
-                <circle cx="100" cy="125" r="60" />
-                <circle cx="100" cy="125" r="40" />
-                <circle cx="100" cy="125" r="20" />
-                <path d="M40 125h120M100 65v120" />
-              </g>
-              <circle cx="100" cy="125" r="4" fill="#e77423" />
-            </svg>
-          </div>
-          <div className="p-5">
-            <div className="flex justify-between items-start gap-3">
-              <div>
-                <div className="eyebrow mb-2">{s.category}</div>
-                <h3 className="font-display text-lg">{s.name}</h3>
-              </div>
-              <div className="font-medium">${(s.price / 100).toFixed(0)}</div>
-            </div>
-            <div className="mt-2 text-xs text-ink-500 font-mono truncate">{s.materials}</div>
-            <div className="mt-3 text-[10px] uppercase tracking-widest text-clay-400">
-              Preview — connect backend to load live products
-            </div>
-          </div>
-        </div>
-      ))}
     </div>
   );
 }

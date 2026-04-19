@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { getCurrentUser } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
-import { getClient } from "./client";
+import { getClient, isAmplifyConfigured } from "./client";
 
 export interface CartLine {
   productId: string;
@@ -94,6 +94,7 @@ function rowsToLines(rows: ItemRow[]): CartLine[] {
 }
 
 async function checkSignedIn(): Promise<boolean> {
+  if (!isAmplifyConfigured()) return false;
   try {
     await getCurrentUser();
     return true;
@@ -136,6 +137,12 @@ export function useCart() {
     };
 
     void sync();
+
+    if (!isAmplifyConfigured()) {
+      return () => {
+        cancelled = true;
+      };
+    }
 
     const unsub = Hub.listen("auth", ({ payload }) => {
       if (payload.event === "signedIn" || payload.event === "signedOut") {

@@ -40,7 +40,10 @@ export default function App({ amplifyConfigured, stripeCheckoutUrl }: AppProps) 
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/shop/:slug" element={<ProductPage />} />
+            <Route path="/product/:slug" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout/cancel" element={<CartPage />} />
+            <Route path="/checkout/success" element={<OrderSuccessPage />} />
             <Route path="/order-success" element={<OrderSuccessPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

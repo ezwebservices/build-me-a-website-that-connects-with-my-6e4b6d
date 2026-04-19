@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 import { useCart } from "../lib/cart";
 import { useApp } from "../context/AppContext";
 import { IronwakeMark } from "./IronwakeMark";
+import { CartDrawer } from "./CartDrawer";
 
 export function SiteLayout() {
   const { count } = useCart();
   const { shopName, tagline } = useApp();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     setMenuOpen(false);
+    setCartOpen(false);
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [location.pathname]);
 
@@ -50,17 +53,18 @@ export function SiteLayout() {
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <Link
-              to="/cart"
+            <button
+              type="button"
+              onClick={() => setCartOpen(true)}
               className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ink-900/15 hover:border-clay-500 text-sm transition"
-              aria-label={`Cart, ${count} items`}
+              aria-label={`Open cart, ${count} items`}
             >
               <CartIcon />
               <span className="hidden sm:inline text-xs uppercase tracking-widest">Cart</span>
               <span className="min-w-[20px] h-5 px-1.5 rounded-full bg-clay-500 text-paper-50 text-[10px] font-semibold flex items-center justify-center">
                 {count}
               </span>
-            </Link>
+            </button>
             <button
               className="md:hidden p-2 rounded border border-ink-900/15"
               onClick={() => setMenuOpen((v) => !v)}
@@ -93,6 +97,8 @@ export function SiteLayout() {
       <main className="flex-1">
         <Outlet />
       </main>
+
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 
       <footer className="border-t border-ink-900/10 mt-20 py-14 bg-paper-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-4 gap-10">

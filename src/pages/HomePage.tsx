@@ -4,14 +4,18 @@ import { getClient, type ProductRecord } from "../lib/client";
 import { useApp } from "../context/AppContext";
 import { ProductCard } from "../components/ProductCard";
 import { IronwakeMark } from "../components/IronwakeMark";
+import { PREVIEW_PRODUCTS } from "../lib/previewProducts";
 
 export function HomePage() {
   const { amplifyConfigured, shopName, settings } = useApp();
-  const [products, setProducts] = useState<ProductRecord[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<ProductRecord[]>(
+    amplifyConfigured ? [] : PREVIEW_PRODUCTS
+  );
+  const [loading, setLoading] = useState(amplifyConfigured);
 
   useEffect(() => {
     if (!amplifyConfigured) {
+      setProducts(PREVIEW_PRODUCTS);
       setLoading(false);
       return;
     }

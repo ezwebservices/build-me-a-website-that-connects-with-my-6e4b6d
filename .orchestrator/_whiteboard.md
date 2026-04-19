@@ -1,21 +1,27 @@
 # Iteration Whiteboard
 
-**Change request:** i cannot add items to the card and checkout with stripe test key need a full shop expereince, also cannot access studio access, only console logs i see is this but not sure if its related: index-CyiCugak.js:58 Amplify has not been configured. Please call Amplify.configure() before using this service.
-getConfig	@	index-CyiCugak.js:58
-index-CyiCugak.js:8 Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
-    at Object.get (index-CyiCugak.js:66:14574)
-    at index-CyiCugak.js:183:25631
-    at fu (index-CyiCugak.js:8:24452)
-    at ka (index-CyiCugak.js:8:42829)
-    at index-CyiCugak.js:8:41075
-    at U (index-CyiCugak.js:1:10545)
-    at MessagePort.B (index-CyiCugak.js:1:10917)
+**Change request:** every product needs a product detail and cart full logic, also cannot load it at all index-CuL7rNjp.js:8 Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
+    at Object.get (index-CuL7rNjp.js:66:14574)
+    at index-CuL7rNjp.js:129:4547
+    at hc (index-CuL7rNjp.js:8:24452)
+    at ka (index-CuL7rNjp.js:8:42829)
+    at index-CuL7rNjp.js:8:41075
+    at U (index-CuL7rNjp.js:1:10545)
+    at MessagePort.B (index-CuL7rNjp.js:1:10917)
+index-CuL7rNjp.js:6 Uncaught Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
+    at Object.get (index-CuL7rNjp.js:66:14574)
+    at index-CuL7rNjp.js:129:4547
+    at hc (index-CuL7rNjp.js:8:24452)
+    at ka (index-CuL7rNjp.js:8:42829)
+    at index-CuL7rNjp.js:8:41075
+    at U (index-CuL7rNjp.js:1:10545)
+    at MessagePort.B (index-CuL7rNjp.js:1:10917)
 
 **Subtasks planned:** 3
 
-1. **Architect**: Audit the current Amplify Gen 2 backend and frontend bootstrap to diagnose why amplify_outputs.json isn't wired. Specifically: (a) verify amplify/backend.ts includes auth, data, storage, and the Stripe checkout function; (b) confirm amplify/data/resource.ts defines Product (title, description, priceCents, currency, images[], shippingRequired, stockQty, active), Cart/CartItem, Order, and proper auth rules (public read for Product, owner for Cart/Order, admin group for Product mutations); (c) confirm amplify/storage/resource.ts exists for product images; (d) confirm amplify/functions/stripe-checkout/resource.ts uses secret('STRIPE_SECRET_KEY') and exposes a Function URL; (e) confirm src/main.tsx (or App.tsx) calls Amplify.configure(outputs) guarded by try/catch on the import; (f) confirm amplify.yml runs `npx ampx pipeline-deploy` so amplify_outputs.json is generated at build. Produce a concrete gap list with file paths and exact changes the Engineer must make. Do NOT write code — deliver the spec only.
-2. **Engineer**: Implement every gap identified by the Architect so the shop works end-to-end with Stripe test keys and Studio access is available after the next Amplify deploy. Required outcomes: (1) Amplify.configure(outputs) is called at app startup when amplify_outputs.json exists, with a clear fallback UI when it doesn't (no crash, no console error in configured state). (2) Product model + admin-only CRUD UI (create/edit/delete products with title, description, price, currency, images uploaded via aws-amplify/storage uploadData, stock, active flag, shipping toggle) gated to a 'Admins' Cognito group. (3) Public shop: product grid + product detail page reading live via client.models.Product.observeQuery(). (4) Cart: add/remove/update quantity, persisted in Amplify Data as Cart + CartItem owned by the signed-in user (guests prompted to sign in at checkout). (5) Checkout: Lambda function `stripe-checkout` (Node 20, @aws-amplify/backend secret('STRIPE_SECRET_KEY')) that accepts the user's cart items, creates a Stripe Checkout Session (mode=payment, line_items from Product prices, shipping_address_collection + shipping_options when any item has shippingRequired, success_url/cancel_url from origin header), and returns the session URL; frontend calls it and window.location = url. (6) Order model written via a Stripe webhook Lambda `stripe-webhook` verifying signature with secret('STRIPE_WEBHOOK_SECRET'), creating Order records with status/paymentIntent/shippingAddress/lineItems. (7) 'Studio' link in admin nav that opens the Amplify Studio URL (read from VITE_AMPLIFY_STUDIO_URL or derived) and a short inline help panel telling the user to open Amplify console if the env var is missing. (8) Ensure amplify.yml builds backend+frontend and emits amplify_outputs.json. Keep `npm run build` exiting 0. No TODOs, no mock data.
-3. **QA**: After Engineer reports complete, verify: (1) `npm run build` exits 0; (2) with amplify_outputs.json present, the app boots with zero Amplify-configuration console errors; (3) admin (Cognito Admins group) can create a product with an uploaded image and it appears in the public shop in real time; (4) a signed-in non-admin user can add the product to cart, update qty, remove item, and cart survives reload (persisted in Data, not localStorage); (5) clicking Checkout redirects to a real Stripe Checkout URL using the test publishable/secret keys and test card 4242... completes; (6) Stripe webhook writes an Order row; (7) Studio link in admin nav opens the correct Amplify Studio URL; (8) no forbidden uses of localStorage/sessionStorage for product/cart/order/user data (grep to confirm). Produce a pass/fail report with any reproducible defects.
+1. **Engineer**: Fix the runtime crash: make Amplify client initialization safe. In src (App bootstrap and any module calling generateClient<Schema>()), conditionally import amplify_outputs.json with try/catch and only call Amplify.configure() + generateClient() when config is present. Export a lazy client getter so modules don't invoke generateClient() at import time. Ensure the app renders in preview mode (no backend) without throwing. Remove any top-level generateClient() calls that execute before configure().
+2. **Engineer**: Build full shop experience: (a) Product detail route /product/:id with image gallery, description, price, quantity selector, Add to Cart. (b) Cart context/store backed by Amplify Data CartItem model (fallback to in-memory for preview mode ONLY when no config) with add, remove, update quantity, subtotal, tax/shipping estimate. (c) Cart drawer + /cart page showing line items, totals, Checkout button. (d) Wire Checkout to existing Stripe checkout Lambda/function URL — POST cart items, redirect to Stripe. (e) Handle success/cancel return routes. Ensure all routes work in preview mode without crashing. Run npm run build until exit 0.
+3. **QA**: Verify: app loads without console errors in preview (no amplify_outputs.json) and with config. Click a product → detail page renders. Add multiple products to cart, change quantities, remove items. Cart persists across navigation. Checkout button redirects to Stripe test session. Confirm no 'Client could not be generated' error in any flow.
 
 ---
 

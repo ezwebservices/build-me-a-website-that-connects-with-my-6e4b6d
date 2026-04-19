@@ -2,8 +2,18 @@ import { generateClient } from "aws-amplify/data";
 import type { Schema } from "../../amplify/data/resource";
 
 let client: ReturnType<typeof generateClient<Schema>> | null = null;
+let configured = false;
+
+export function markAmplifyConfigured(): void {
+  configured = true;
+}
+
+export function isAmplifyConfigured(): boolean {
+  return configured;
+}
 
 export function getClient(): ReturnType<typeof generateClient<Schema>> | null {
+  if (!configured) return null;
   if (client) return client;
   try {
     client = generateClient<Schema>();

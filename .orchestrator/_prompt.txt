@@ -1,16 +1,22 @@
 You are QA (QA Engineer). Make this specific change:
 
-After Engineer reports complete, verify: (1) `npm run build` exits 0; (2) with amplify_outputs.json present, the app boots with zero Amplify-configuration console errors; (3) admin (Cognito Admins group) can create a product with an uploaded image and it appears in the public shop in real time; (4) a signed-in non-admin user can add the product to cart, update qty, remove item, and cart survives reload (persisted in Data, not localStorage); (5) clicking Checkout redirects to a real Stripe Checkout URL using the test publishable/secret keys and test card 4242... completes; (6) Stripe webhook writes an Order row; (7) Studio link in admin nav opens the correct Amplify Studio URL; (8) no forbidden uses of localStorage/sessionStorage for product/cart/order/user data (grep to confirm). Produce a pass/fail report with any reproducible defects.
+Verify: app loads without console errors in preview (no amplify_outputs.json) and with config. Click a product → detail page renders. Add multiple products to cart, change quantities, remove items. Cart persists across navigation. Checkout button redirects to Stripe test session. Confirm no 'Client could not be generated' error in any flow.
 
-Context: The user asked for: i cannot add items to the card and checkout with stripe test key need a full shop expereince, also cannot access studio access, only console logs i see is this but not sure if its related: index-CyiCugak.js:58 Amplify has not been configured. Please call Amplify.configure() before using this service.
-getConfig	@	index-CyiCugak.js:58
-index-CyiCugak.js:8 Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
-    at Object.get (index-CyiCugak.js:66:14574)
-    at index-CyiCugak.js:183:25631
-    at fu (index-CyiCugak.js:8:24452)
-    at ka (index-CyiCugak.js:8:42829)
-    at index-CyiCugak.js:8:41075
-    at U (index-CyiCugak.js:1:10545)
-    at MessagePort.B (index-CyiCugak.js:1:10917)
+Context: The user asked for: every product needs a product detail and cart full logic, also cannot load it at all index-CuL7rNjp.js:8 Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
+    at Object.get (index-CuL7rNjp.js:66:14574)
+    at index-CuL7rNjp.js:129:4547
+    at hc (index-CuL7rNjp.js:8:24452)
+    at ka (index-CuL7rNjp.js:8:42829)
+    at index-CuL7rNjp.js:8:41075
+    at U (index-CuL7rNjp.js:1:10545)
+    at MessagePort.B (index-CuL7rNjp.js:1:10917)
+index-CuL7rNjp.js:6 Uncaught Error: Client could not be generated. This is likely due to `Amplify.configure()` not being called prior to `generateClient()` or because the configuration passed to `Amplify.configure()` is missing GraphQL provider configuration.
+    at Object.get (index-CuL7rNjp.js:66:14574)
+    at index-CuL7rNjp.js:129:4547
+    at hc (index-CuL7rNjp.js:8:24452)
+    at ka (index-CuL7rNjp.js:8:42829)
+    at index-CuL7rNjp.js:8:41075
+    at U (index-CuL7rNjp.js:1:10545)
+    at MessagePort.B (index-CuL7rNjp.js:1:10917)
 
 Read the relevant source files, make targeted edits, and run `npm run build` to verify.

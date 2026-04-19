@@ -5,7 +5,7 @@ import { resolveImageUrl } from "../lib/images";
 import { formatCents } from "../lib/format";
 import { useCart } from "../lib/cart";
 import { useApp } from "../context/AppContext";
-import { ConfigWarning } from "../components/ConfigWarning";
+import { findPreviewProductBySlug } from "../lib/previewProducts";
 
 export function ProductPage() {
   const { slug } = useParams();
@@ -20,7 +20,15 @@ export function ProductPage() {
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
-    if (!amplifyConfigured || !slug) {
+    if (!slug) {
+      setLoading(false);
+      return;
+    }
+    if (!amplifyConfigured) {
+      const preview = findPreviewProductBySlug(slug);
+      setProduct(preview);
+      const imgs = (preview?.images?.filter(Boolean) as string[] | undefined) ?? [];
+      setImageUrls(imgs);
       setLoading(false);
       return;
     }
@@ -53,14 +61,6 @@ export function ProductPage() {
       cancelled = true;
     };
   }, [slug, amplifyConfigured]);
-
-  if (!amplifyConfigured) {
-    return (
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <ConfigWarning />
-      </div>
-    );
-  }
 
   if (loading) {
     return (
