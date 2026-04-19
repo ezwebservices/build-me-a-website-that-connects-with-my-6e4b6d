@@ -1,12 +1,139 @@
 # Iteration Whiteboard
 
-**Change request:** the first section isnt updated for light theme, also come up with a better name, should be design inspired, rebrand to better home designer aesthetic
+**Change request:** An AWS Amplify deployment FAILED for this project. You must analyze the build error logs below, identify the ROOT CAUSE, fix the underlying problem, run `npm run build` locally to verify it compiles cleanly, then commit and push.
 
-**Subtasks planned:** 3
+PROJECT IDEA:
+build me a website that connects with my stripe, i can easily create products, pictures, price, handle shipping, it should be a creative modern design, its going to be for my cnc garage business. create an elegant artsy feel to the site and everything i need to run the cnc business start to finish.
 
-1. **BrandStrategist**: Rebrand the CNC garage business with a design-inspired name evoking a refined home-designer aesthetic (think artisan atelier, bespoke millwork, modern heritage). Deliver: final brand name, tagline, 1-paragraph brand voice, refined light-theme color palette (warm neutrals, bone/ivory, muted sage or clay accent, deep charcoal text), typography pairing (an elegant serif display + clean sans), and specific guidance on how the hero/first section should look in the light theme. Write results to .orchestrator/brand.md so Engineer can implement.
-2. **Engineer**: Apply the rebrand from .orchestrator/brand.md across the site: update site name, logo/wordmark, tagline, meta tags, footer, and any hardcoded brand references. Then fix the first/hero section which currently isn't styled for the light theme — rework its background, text colors, accents, and imagery to match the new home-designer light palette and typography. Ensure contrast, spacing, and responsive layout feel elegant and artsy. Run npm run build until it exits 0.
-3. **QA**: Verify: (1) new brand name appears consistently in header, title, footer, meta. (2) Hero/first section fully adopts the light theme (no dark leftovers, correct background, readable text, proper accent colors). (3) No console errors, build passes, responsive at mobile/tablet/desktop. Report any regressions.
+DEPLOY ERROR LOGS (last 8000 chars from Amplify):
+```
+chedHead to false
+                                 HEAD is now at f0c7016 the first section isnt updated for light theme, also come up with a better name, should be design inspired, rebrand to better home designer aesthetic
+2026-04-19T19:36:45.200Z [INFO]: Successfully cleaned up Git credentials
+2026-04-19T19:36:45.200Z [INFO]: # Checking for Git submodules at: /codebuild/output/src412412510/src/build-me-a-website-that-connects-with-my-6e4b6d/.gitmodules
+2026-04-19T19:36:45.208Z [INFO]: # Retrieving environment cache...
+2026-04-19T19:36:45.244Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2026-04-19T19:36:45.244Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-04-19T19:36:45.245Z [INFO]: SSM params {"Path":"/amplify/drswqmm9mpc53/main/","WithDecryption":true}
+2026-04-19T19:36:46.061Z [INFO]: # No package override configuration found.
+2026-04-19T19:36:46.065Z [INFO]: # Retrieving cache...
+2026-04-19T19:36:46.150Z [INFO]: # Retrieved cache
+2026-04-19T19:36:50.360Z [INFO]: ## Starting Backend Build
+                                 # Starting phase: build
+                                 # Executing command: npm ci --cache .npm --prefer-offline
+2026-04-19T19:37:08.598Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-04-19T19:37:08.607Z [WARNING]: npm warn While resolving: @aws-amplify/backend-output-schemas@1.8.0
+                                    npm warn Found: zod@3.25.17
+                                    npm warn node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/backend-output-schemas/node_modules/zod
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer zod@"3.25.17" from @aws-amplify/backend-output-schemas@1.8.0
+                                    npm warn node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/backend-output-schemas
+                                    npm warn   bundled @aws-amplify/backend-output-schemas@"^1.0.0" from @aws-amplify/data-construct@1.17.2
+                                    npm warn   node_modules/@aws-amplify/data-construct
+                                    npm warn   2 more (@aws-amplify/ai-constructs, @aws-amplify/backend-output-storage)
+2026-04-19T19:37:08.972Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-04-19T19:37:08.973Z [WARNING]: npm warn While resolving: @aws-amplify/backend-output-schemas@1.8.0
+                                    npm warn Found: zod@3.25.17
+                                    npm warn node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/backend-output-schemas/node_modules/zod
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer zod@"3.25.17" from @aws-amplify/backend-output-schemas@1.8.0
+                                    npm warn node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/backend-output-schemas
+                                    npm warn   bundled @aws-amplify/backend-output-schemas@"^1.0.0" from @aws-amplify/graphql-api-construct@1.21.2
+                                    npm warn   node_modules/@aws-amplify/graphql-api-construct
+                                    npm warn   2 more (@aws-amplify/ai-constructs, @aws-amplify/backend-output-storage)
+2026-04-19T19:37:09.128Z [WARNING]: npm error code EUSAGE
+2026-04-19T19:37:09.129Z [WARNING]: npm error
+                                    npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+                                    npm error
+                                    npm error Missing: json-schema-to-ts@3.1.1 from lock file
+                                    npm error Missing: ts-algebra@2.0.0 from lock file
+                                    npm error Missing: @aws-sdk/eventstream-handler-node@3.821.0 from lock file
+                                    npm error Missing: @aws-sdk/middleware-eventstream@3.821.0 from lock file
+                                    npm error Missing: @aws-sdk/types@3.821.0 from lock file
+                                    npm error Missing: @aws-sdk/types@3.821.0 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@5.4.1 from lock file
+                                    npm error Missing: strnum@2.2.3 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@5.2.5 from lock file
+                                    npm error Missing: strnum@2.2.3 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@5.4.1 from lock file
+                                    npm error Missing: strnum@2.2.3 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error Missing: fast-xml-parser@5.2.5 from lock file
+                                    npm error Missing: strnum@2.2.3 from lock file
+                                    npm error Missing: fast-xml-parser@4.4.1 from lock file
+                                    npm error
+                                    npm error Clean install a project
+                                    npm error
+                                    npm error Usage:
+                                    npm error npm ci
+                                    npm error
+                                    npm error Options:
+                                    npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+                                    npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+                                    npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+                                    npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+                                    npm error [--no-bin-links] [--no-fund] [--dry-run]
+                                    npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+                                    npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+                                    npm error
+                                    npm error aliases: clean-install, ic, install-clean, isntall-clean
+                                    npm error
+                                    npm error Run "npm help ci" for more info
+2026-04-19T19:37:09.129Z [WARNING]: npm error A complete log of this run can be found in: /codebuild/output/src412412510/src/build-me-a-website-that-connects-with-my-6e4b6d/.npm/_logs/2026-04-19T19_36_54_096Z-debug-0.log
+2026-04-19T19:37:09.138Z [ERROR]: !!! Build failed
+2026-04-19T19:37:09.138Z [ERROR]: !!! Error: Command failed with exit code 1
+2026-04-19T19:37:09.138Z [INFO]: # Starting environment caching...
+2026-04-19T19:37:09.139Z [INFO]: # Environment caching completed
+
+
+```
+
+## HARD RULES — DO NOT VIOLATE
+
+1. **NEVER comment out, disable, or remove `npx ampx pipeline-deploy` from amplify.yml.** If pipeline-deploy is failing, the IAM role or CDK bootstrap is the real problem. Disabling it leaves the backend stuck on a stale schema and breaks every GraphQL mutation. DO NOT do this.
+
+2. **NEVER commit `amplify_outputs.json` to git.** That file is GENERATED by `npx ampx pipeline-deploy` at deploy time. If you see it in the repo, run `git rm --cached amplify_outputs.json` and add `amplify_outputs*` to .gitignore.
+
+3. **NEVER add `!/amplify_outputs.json` exception to .gitignore** to keep tracking it. This is the wrong direction.
+
+4. **NEVER create stub/empty amplify_outputs.json files** to make TypeScript happy. The right fix is to ensure pipeline-deploy runs in CI.
+
+5. **In amplify/functions/<name>/resource.ts, ALL runtime values must use `secret('NAME')`, NOT `process.env`.** Using `process.env.X || ''` reads at BUILD time (where the env var is unset) and bakes the empty string into the deployed Lambda. This causes errors like "items[0][price] cannot be empty". The orchestrator writes runtime secrets to SSM at /amplify/shared/{appId}/{NAME} — the runtime resolver only fetches them for keys declared with secret().
+
+## ROOT CAUSE GUIDE
+
+- `BootstrapDetectionError` / `ssm:GetParameter` / `cloudformation:GetTemplateSummary` errors → IAM role on Amplify app is missing or lacks permissions. The orchestrator app should have already attached the role; if not, the user needs to fix it manually in the AWS Console. DO NOT disable pipeline-deploy.
+- `Cannot find module amplify_outputs.json` → pipeline-deploy isn't running OR isn't running BEFORE `npm run build`. Check amplify.yml ordering. DO NOT create a stub file.
+- `items[X][price] cannot be empty` (Stripe) / `Invalid API Key provided: <value will be resolved during runtime>` → resource.ts uses `process.env.STRIPE_PRICE_ID` instead of `secret('STRIPE_PRICE_ID')`. Change it to use secret(). Same fix for any other Stripe/third-party env var.
+- TypeScript errors in src/ → fix the actual TS error in the source file.
+- Missing npm package → add it to package.json.
+- Lambda function errors → fix the function code in amplify/functions/<name>/handler.ts.
+
+## STEPS
+
+1. Read the error logs carefully — find the FIRST error (later errors are usually cascades).
+2. Identify which file/module is the root cause.
+3. Fix the root cause in the source. NEVER disable or skip a build step.
+4. Run `npm run build` locally — fix until it passes clean.
+5. If your fix involves amplify.yml, double-check it still runs `pipeline-deploy`.
+6. Run: git add -A && git commit -m "Fix: <brief description>" && git push
+7. The push will trigger a new Amplify deploy automatically.
+
+Do not stop until the local build is clean and changes are pushed.
+
+**Subtasks planned:** 1
+
+1. **Engineer**: Fix the out-of-sync package-lock.json that is causing Amplify's `npm ci` to fail. Steps: (1) Run `npm install` in the workspace root to regenerate package-lock.json so it matches package.json (this resolves the Missing: json-schema-to-ts@3.1.1, ts-algebra@2.0.0, @aws-sdk/eventstream-handler-node, @aws-sdk/middleware-eventstream, @aws-sdk/types@3.821.0, fast-xml-parser@4.4.1/5.2.5/5.4.1, strnum@2.2.3 errors from the lockfile). (2) Run `npm run build` and keep fixing until it exits 0. (3) Do NOT modify amplify.yml or remove pipeline-deploy. Do NOT commit amplify_outputs.json. (4) Once the build is green, `git add -A && git commit -m "Fix: regenerate package-lock.json to sync with package.json" && git push` to trigger a new Amplify deploy.
 
 ---
 
