@@ -17,7 +17,9 @@ const url = checkoutFn.addFunctionUrl({
   authType: FunctionUrlAuthType.NONE,
   cors: {
     allowedOrigins: ["*"],
-    allowedMethods: [HttpMethod.POST, HttpMethod.OPTIONS],
+    // OPTIONS is NOT a valid value for Lambda Function URL allowedMethods —
+    // Function URLs auto-handle CORS preflight. Only real methods belong here.
+    allowedMethods: [HttpMethod.POST],
     allowedHeaders: ["*"],
   },
 });
