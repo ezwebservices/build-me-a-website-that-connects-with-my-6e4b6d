@@ -2,61 +2,36 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Amplify } from "aws-amplify";
+// STATIC import — guaranteed to complete before this module evaluates, so
+// Amplify.configure below runs BEFORE any component renders. Using a dynamic
+// import with top-level await here let child modules start rendering before
+// the await resolved, which is what caused the "Client could not be
+// generated" error on the live site.
+import outputs from "../amplify_outputs.json";
 import App from "./App";
 import { markAmplifyConfigured } from "./lib/client";
 import { AmplifyErrorBoundary } from "./components/AmplifyErrorBoundary";
 import "./index.css";
 
-let amplifyConfigured = false;
-let stripeCheckoutUrl = "";
+// The CI guard in amplify.yml's frontend preBuild already refuses to publish
+// a bundle built against a placeholder, so in production `outputs` is real.
+// Locally, it may be a placeholder, but that's fine — Amplify will just warn
+// and the dev page will show the ErrorBoundary's Preview-mode banner.
+Amplify.configure(outputs as Parameters<typeof Amplify.configure>[0]);
+markAmplifyConfigured();
 
-try {
-  const mod = await import("../amplify_outputs.json");
-  const rawOutputs = (mod.default ?? mod) as Record<string, unknown> & {
-    custom?: { stripeCheckoutUrl?: string };
-    __placeholder?: boolean;
-    data?: { url?: string };
-  };
-  // A valid Amplify Gen 2 outputs file must have:
-  //   - no __placeholder flag
-  //   - a `data` object with a real GraphQL `url`
-  // Checking only `"data" in rawOutputs` is NOT enough — pipeline-deploy can
-  // partially succeed and produce `data: {}`, which Amplify.configure accepts
-  // silently but generateClient()'s proxy then throws on first model access
-  // ("Client could not be generated...").
-  const hasRealData =
-    !rawOutputs.__placeholder &&
-    typeof rawOutputs === "object" &&
-    rawOutputs !== null &&
-    rawOutputs.data != null &&
-    typeof rawOutputs.data === "object" &&
-    typeof rawOutputs.data.url === "string" &&
-    rawOutputs.data.url.length > 0;
-  if (hasRealData) {
-    Amplify.configure(rawOutputs as Parameters<typeof Amplify.configure>[0]);
-    stripeCheckoutUrl = rawOutputs.custom?.stripeCheckoutUrl ?? "";
-    amplifyConfigured = true;
-    markAmplifyConfigured();
-    console.log("[amplify] configured:", {
-      dataUrl: rawOutputs.data?.url,
-      hasAuth: !!(rawOutputs as Record<string, unknown>).auth,
-      hasStorage: !!(rawOutputs as Record<string, unknown>).storage,
-    });
-  } else {
-    // Keep a single-line breadcrumb so the "Client could not be generated"
-    // white-screen can never recur without a clear local explanation.
-    console.warn("[amplify] skipping Amplify.configure — outputs lack data.url", {
-      hasPlaceholder: rawOutputs.__placeholder,
-      hasData: typeof rawOutputs.data === "object",
-      dataKeys: rawOutputs.data && typeof rawOutputs.data === "object"
-        ? Object.keys(rawOutputs.data)
-        : [],
-    });
-  }
-} catch (e) {
-  console.warn("[amplify] could not load amplify_outputs.json:", e);
-  amplifyConfigured = false;
-}
+const outputsAny = outputs as Record<string, unknown> & {
+  custom?: { stripeCheckoutUrl?: string };
+  __placeholder?: boolean;
+  data?: { url?: string };
+};
+const stripeCheckoutUrl = outputsAny.custom?.stripeCheckoutUrl ?? "";
+const amplifyConfigured = !outputsAny.__placeholder && typeof outputsAny.data?.url === "string";
+
+console.log("[amplify] configured:", {
+  dataUrl: outputsAny.data?.url,
+  amplifyConfigured,
+});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
