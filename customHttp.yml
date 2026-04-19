@@ -1,0 +1,39 @@
+customHeaders:
+  - pattern: '**/*.js'
+    headers:
+      - key: 'Content-Type'
+        value: 'text/javascript; charset=utf-8'
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/*.mjs'
+    headers:
+      - key: 'Content-Type'
+        value: 'text/javascript; charset=utf-8'
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/*.css'
+    headers:
+      - key: 'Content-Type'
+        value: 'text/css; charset=utf-8'
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/*.wasm'
+    headers:
+      - key: 'Content-Type'
+        value: 'application/wasm'
+  - pattern: '**/*.json'
+    headers:
+      - key: 'Content-Type'
+        value: 'application/json; charset=utf-8'
+  - pattern: '**/*.svg'
+    headers:
+      - key: 'Content-Type'
+        value: 'image/svg+xml'
+  - pattern: '**/*.woff2'
+    headers:
+      - key: 'Content-Type'
+        value: 'font/woff2'
+  - pattern: '/index.html'
+    headers:
+      - key: 'Cache-Control'
+        value: 'no-cache, no-store, must-revalidate'

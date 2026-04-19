@@ -1,0 +1,44 @@
+{
+  "name": "Ironlace Studio",
+  "palette": {
+    "forge": {
+      "hex": "#0E0F12",
+      "role": "primary background, deep ink",
+      "description": "Charred iron, near-black with a hint of blue"
+    },
+    "bone": {
+      "hex": "#F3EEE3",
+      "role": "primary foreground, paper, canvas",
+      "description": "Warm off-white, like aged drafting paper"
+    },
+    "ember": {
+      "hex": "#C2452D",
+      "role": "accent, CTAs, hot-metal highlight",
+      "description": "Oxidized copper ember, restrained red-orange"
+    },
+    "brass": {
+      "hex": "#B8935A",
+      "role": "secondary accent, luxury detail",
+      "description": "Aged brass, warm metallic"
+    },
+    "walnut": {
+      "hex": "#3E2A1E",
+      "role": "supporting, wood tones, depth",
+      "description": "Dark walnut, rich brown"
+    },
+    "graphite": {
+      "hex": "#4A4D52",
+      "role": "muted text, borders, dividers",
+      "description": "Pencil lead gray"
+    },
+    "linen": {
+      "hex": "#E4DCCB",
+      "role": "secondary surfaces, cards",
+      "description": "Soft linen, slightly warmer than bone"
+    }
+  },
+  "gradients": {
+    "forgeToWalnut": ["#0E0F12", "#3E2A1E"],
+    "emberGlow": ["#C2452D", "#B8935A"]
+  }
+}

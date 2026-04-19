@@ -1,0 +1,198 @@
+{
+  "site": {
+    "name": "Ironlace Studio",
+    "tagline": "Precision cut. Artfully made.",
+    "url": "https://ironlacestudio.com",
+    "defaultTitle": "Ironlace Studio — Heirloom CNC work from the garage floor",
+    "titleTemplate": "%s · Ironlace Studio",
+    "defaultDescription": "Ironlace Studio is a one-person CNC garage shop cutting walnut, steel, aluminum, and brass into editioned, signed, shop-made objects. Signage, inlays, wall pieces, and custom commissions. Studio-to-door, nationwide.",
+    "locale": "en_US",
+    "type": "website",
+    "twitterHandle": "@ironlacestudio",
+    "themeColor": "#1a1612"
+  },
+  "keywords": {
+    "primary": [
+      "custom CNC shop",
+      "editioned metal art",
+      "handmade steel signage",
+      "walnut brass inlay",
+      "custom CNC commissions",
+      "garage CNC shop"
+    ],
+    "longtail": [
+      "custom blackened steel sign maker",
+      "walnut and brass inlay wall art",
+      "one of one CNC wall piece",
+      "bespoke CNC hardware for remodel",
+      "custom range hood metal details",
+      "CNC signage for storefront small business",
+      "custom house numbers blackened steel",
+      "heirloom CNC wood and metal art",
+      "CNC commission from vector file",
+      "numbered limited edition metal wall art"
+    ],
+    "branded": [
+      "Ironlace Studio",
+      "Ironlace CNC",
+      "Ironlace signage",
+      "Ironlace commissions"
+    ]
+  },
+  "pages": [
+    {
+      "path": "/",
+      "title": "Ironlace Studio — Heirloom CNC work, cut in the garage",
+      "description": "Editioned, signed, shop-made objects in walnut, steel, aluminum, and brass. Browse the shop, send a vector for commission, and ship studio-to-door.",
+      "h1": "Precision cut. Artfully made.",
+      "keywords": ["custom CNC shop", "garage CNC shop", "editioned metal art", "handmade steel signage"],
+      "ogImage": "/brand/og-image.svg",
+      "schema": "Organization"
+    },
+    {
+      "path": "/shop",
+      "title": "The Shop — Limited editions in wood, steel, and brass",
+      "description": "Every piece in the Ironlace shop is cut on the Shapeoko, finished by hand, and numbered. One of one, or one of twelve. Live inventory, honest photography.",
+      "h1": "The Shop",
+      "keywords": ["editioned metal art", "walnut brass inlay", "numbered limited edition metal wall art"],
+      "schema": "CollectionPage"
+    },
+    {
+      "path": "/shop/signage",
+      "title": "Signage — Blackened steel, brushed aluminum, shop-made",
+      "description": "Storefront signs, house numbers, and custom business signage cut in steel and aluminum. Hand-finished and editioned. Trade pricing for designers.",
+      "h1": "Signage with soul.",
+      "keywords": ["custom blackened steel sign maker", "CNC signage for storefront small business", "custom house numbers blackened steel"]
+    },
+    {
+      "path": "/shop/wall-art",
+      "title": "Wall Art — Inlaid walnut and machined aluminum pieces",
+      "description": "One-of-one and one-of-twelve wall pieces in walnut with brass pin inlays, brushed aluminum panels, and blackened steel compositions. Shop-floor photographed.",
+      "h1": "Wall pieces, numbered on the back.",
+      "keywords": ["walnut and brass inlay wall art", "one of one CNC wall piece", "heirloom CNC wood and metal art"]
+    },
+    {
+      "path": "/shop/hardware",
+      "title": "Hardware — Custom CNC hardware for the obsessive remodel",
+      "description": "Escutcheons, pulls, range hood straps, and closet hardware cut to match your remodel. Order from stock profiles, or commission one-offs from a vector.",
+      "h1": "Hardware you notice.",
+      "keywords": ["bespoke CNC hardware for remodel", "custom range hood metal details"]
+    },
+    {
+      "path": "/commission",
+      "title": "Commission a piece — Send a vector, get a quote in a day",
+      "description": "Upload an SVG, DXF, or sketch. Pick a material and finish. Ironlace quotes in a business day, cuts in a week or two, and ships crated and tracked.",
+      "h1": "Send me a vector.",
+      "keywords": ["custom CNC commissions", "CNC commission from vector file"],
+      "schema": "Service"
+    },
+    {
+      "path": "/journal",
+      "title": "Shop Journal — What's on the bench this week",
+      "description": "Process notes, short films of cuts in progress, and the occasional mistake-turned-keeper. Updated weekly from the Ironlace garage.",
+      "h1": "The Journal",
+      "schema": "Blog"
+    },
+    {
+      "path": "/trade",
+      "title": "Trade Program — Designers, architects, remodelers",
+      "description": "Trade pricing and priority commission slots for design and remodel professionals. Request a trade account and source pieces your clients will ask about.",
+      "h1": "Trade accounts.",
+      "keywords": ["CNC signage for storefront small business", "bespoke CNC hardware for remodel"]
+    },
+    {
+      "path": "/shipping",
+      "title": "Shipping & Returns — Studio-to-door, crated and tracked",
+      "description": "How Ironlace crates, ships, and insures every piece. Live shipping rates at checkout. Damage claims handled directly by the shop, no ticket queue.",
+      "h1": "Studio-to-door."
+    },
+    {
+      "path": "/about",
+      "title": "About — One person, one Shapeoko, one garage",
+      "description": "Ironlace Studio is a single-maker CNC shop. Material honesty, editioned work, and the garage as the gallery. Read the shop's origin and philosophy.",
+      "h1": "About the shop.",
+      "schema": "AboutPage"
+    }
+  ],
+  "openGraph": {
+    "site_name": "Ironlace Studio",
+    "title": "Ironlace Studio — Heirloom CNC work from the garage floor",
+    "description": "Editioned, signed, shop-made objects in walnut, steel, aluminum, and brass. Studio-to-door, nationwide.",
+    "image": "/brand/og-image.svg",
+    "imageAlt": "Ironlace Studio — precision cut, artfully made",
+    "type": "website"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "site": "@ironlacestudio",
+    "creator": "@ironlacestudio",
+    "title": "Ironlace Studio — Heirloom CNC work from the garage floor",
+    "description": "Editioned, signed, shop-made objects. Studio-to-door.",
+    "image": "/brand/og-image.svg"
+  },
+  "structuredData": {
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Ironlace Studio",
+      "url": "https://ironlacestudio.com",
+      "logo": "https://ironlacestudio.com/brand/logo.svg",
+      "description": "A one-person CNC garage shop producing editioned, signed, shop-made objects in walnut, steel, aluminum, and brass.",
+      "sameAs": [
+        "https://twitter.com/ironlacestudio",
+        "https://instagram.com/ironlacestudio"
+      ]
+    },
+    "localBusiness": {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ironlace Studio",
+      "image": "https://ironlacestudio.com/brand/og-image.svg",
+      "priceRange": "$$-$$$",
+      "description": "CNC garage shop: custom signage, inlays, wall art, and bespoke hardware.",
+      "url": "https://ironlacestudio.com"
+    },
+    "service": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Custom CNC Fabrication",
+      "provider": {
+        "@type": "Organization",
+        "name": "Ironlace Studio"
+      },
+      "areaServed": "US",
+      "description": "Custom CNC cutting in walnut, steel, aluminum, and brass. Quote in a business day from uploaded vector files."
+    }
+  },
+  "sitemap": {
+    "changefreq": {
+      "/": "weekly",
+      "/shop": "daily",
+      "/shop/signage": "weekly",
+      "/shop/wall-art": "weekly",
+      "/shop/hardware": "weekly",
+      "/commission": "monthly",
+      "/journal": "weekly",
+      "/trade": "monthly",
+      "/shipping": "yearly",
+      "/about": "yearly"
+    },
+    "priority": {
+      "/": 1.0,
+      "/shop": 0.9,
+      "/commission": 0.9,
+      "/shop/signage": 0.8,
+      "/shop/wall-art": 0.8,
+      "/shop/hardware": 0.8,
+      "/journal": 0.6,
+      "/trade": 0.6,
+      "/about": 0.4,
+      "/shipping": 0.3
+    }
+  },
+  "robots": {
+    "index": true,
+    "follow": true,
+    "disallow": ["/account", "/checkout", "/admin", "/api"]
+  }
+}

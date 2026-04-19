@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ironlace Studio — Precision cut. Artfully made.</title>
+<meta name="description" content="Ironlace Studio is a CNC garage shop turning steel, walnut, and brass into heirloom-grade signage, furniture inlays, wall art, and bespoke commissions. Studio-to-door, shipped nationwide." />
+<meta name="theme-color" content="#0E0F12" />
+<link rel="canonical" href="/" />
+<meta property="og:title" content="Ironlace Studio — Precision cut. Artfully made." />
+<meta property="og:description" content="Heirloom-grade CNC work from a working garage. Editioned pieces, custom commissions, shipped nationwide." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="/brand/og-image.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ironlace Studio" />
+<meta name="twitter:description" content="Precision cut. Artfully made. CNC heirlooms from the garage floor." />
+<link rel="icon" type="image/svg+xml" href="/brand/logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          forge:'#0E0F12', bone:'#F3EEE3', ember:'#C2452D',
+          brass:'#B8935A', walnut:'#3E2A1E', graphite:'#4A4D52', linen:'#E4DCCB'
+        },
+        fontFamily: {
+          serif: ['Fraunces','Georgia','serif'],
+          sans:  ['Inter','ui-sans-serif','system-ui']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#F3EEE3; color:#0E0F12; font-family:'Inter',sans-serif; }
+  .display { font-family:'Fraunces',Georgia,serif; font-optical-sizing:auto; font-variation-settings:"opsz" 144; }
+  .tracker { letter-spacing:.32em; text-transform:uppercase; font-size:.7rem; }
+  .hairline { background:linear-gradient(90deg,transparent,#B8935A88,transparent); height:1px; }
+  .grain {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(184,147,90,.06), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(194,69,45,.05), transparent 45%);
+  }
+  .blueprint {
+    background-color:#0E0F12;
+    background-image:
+      linear-gradient(rgba(184,147,90,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,147,90,.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .toolpath {
+    stroke-dasharray: 6 6;
+    animation: cut 8s linear infinite;
+  }
+  @keyframes cut { to { stroke-dashoffset: -120; } }
+  .ember-glow { background:linear-gradient(135deg,#C2452D,#B8935A); }
+  .marquee { animation: scroll 38s linear infinite; }
+  @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .lift { transition: transform .4s ease, box-shadow .4s ease; }
+  .lift:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -24px rgba(14,15,18,.35); }
+  .underline-ember { background-image:linear-gradient(#C2452D,#C2452D); background-repeat:no-repeat; background-size:0 1px; background-position:0 100%; transition: background-size .3s; }
+  .underline-ember:hover { background-size:100% 1px; }
+</style>
+</head>
+<body class="grain">
+
+<!-- Nav -->
+<header class="sticky top-0 z-30 backdrop-blur bg-bone/80 border-b border-graphite/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <svg viewBox="0 0 80 80" class="w-9 h-9">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C2452D"/><stop offset="1" stop-color="#B8935A"/></linearGradient></defs>
+        <rect x="4" y="4" width="72" height="72" fill="none" stroke="#0E0F12" stroke-width="2"/>
+        <rect x="14" y="14" width="52" height="52" fill="none" stroke="#0E0F12" stroke-width="1.5"/>
+        <rect x="24" y="24" width="32" height="32" fill="none" stroke="#0E0F12" stroke-width="1"/>
+        <circle cx="40" cy="40" r="5" fill="url(#g1)"/>
+        <line x1="40" y1="0" x2="40" y2="24" stroke="#C2452D" stroke-width="1.5" stroke-dasharray="2 2"/>
+      </svg>
+      <div class="leading-tight">
+        <div class="display text-lg tracking-wide">IRONLACE</div>
+        <div class="tracker text-graphite">Studio</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-sm">
+      <a href="#shop" class="underline-ember">Shop</a>
+      <a href="#process" class="underline-ember">Process</a>
+      <a href="#commissions" class="underline-ember">Commissions</a>
+      <a href="#journal" class="underline-ember">Journal</a>
+    </nav>
+    <a href="#shop" class="inline-flex items-center gap-2 px-5 py-2.5 bg-forge text-bone text-sm tracker hover:bg-walnut transition-colors">
+      Enter the Shop
+      <span aria-hidden>→</span>
+    </a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 pt-20 pb-28 grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-7">
+      <div class="flex items-center gap-3 text-graphite">
+        <span class="w-10 h-px bg-brass"></span>
+        <span class="tracker">Est. in the garage · One-of-one work</span>
+      </div>
+      <h1 class="display mt-6 text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+        Precision <em class="text-ember not-italic">cut.</em><br/>
+        Artfully <span class="italic font-light">made.</span>
+      </h1>
+      <p class="mt-7 max-w-xl text-lg text-graphite leading-relaxed">
+        Steel, walnut, brass — coaxed into heirloom-grade objects on a Shapeoko in a working garage.
+        Editioned signage, furniture inlays, wall art, custom hardware. We cut it. We finish it. We ship it.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#shop" class="px-7 py-4 bg-ember text-bone tracker shadow-lg shadow-ember/20 hover:bg-forge transition-colors">Browse the Floor</a>
+        <a href="#commissions" class="px-7 py-4 border border-forge/30 text-forge tracker hover:bg-forge hover:text-bone transition-colors">Commission a Piece</a>
+      </div>
+      <dl class="mt-14 grid grid-cols-3 gap-6 max-w-lg">
+        <div><dt class="tracker text-graphite">Pieces shipped</dt><dd class="display text-3xl mt-1">412</dd></div>
+        <div><dt class="tracker text-graphite">Editions cut</dt><dd class="display text-3xl mt-1">38</dd></div>
+        <div><dt class="tracker text-graphite">Lead time</dt><dd class="display text-3xl mt-1">2–4w</dd></div>
+      </dl>
+    </div>
+
+    <!-- Blueprint card -->
+    <div class="lg:col-span-5">
+      <div class="relative">
+        <div class="absolute -inset-4 bg-brass/10 rotate-1"></div>
+        <div class="relative blueprint p-6 text-bone">
+          <div class="flex items-center justify-between text-bone/60 text-xs tracker">
+            <span>Toolpath · Edition 09 / 12</span>
+            <span>Walnut + Brass</span>
+          </div>
+          <svg viewBox="0 0 320 320" class="w-full mt-4">
+            <g fill="none" stroke="#B8935A" stroke-width="1">
+              <circle cx="160" cy="160" r="130"/>
+              <circle cx="160" cy="160" r="100"/>
+              <circle cx="160" cy="160" r="70"/>
+              <circle cx="160" cy="160" r="40"/>
+            </g>
+            <g fill="none" stroke="#C2452D" stroke-width="1.5" class="toolpath">
+              <path d="M30,160 a130,130 0 1,1 260,0 a130,130 0 1,1 -260,0"/>
+            </g>
+            <g stroke="#F3EEE3" stroke-width=".5" opacity=".5">
+              <line x1="160" y1="20" x2="160" y2="300"/>
+              <line x1="20" y1="160" x2="300" y2="160"/>
+            </g>
+            <circle cx="160" cy="160" r="5" fill="#C2452D"/>
+            <text x="170" y="158" fill="#F3EEE3" font-size="10" font-family="Inter">origin (0,0)</text>
+            <text x="22" y="312" fill="#B8935A" font-size="9" font-family="Inter" letter-spacing="2">FILE: ROSETTE_09.NC</text>
+            <text x="220" y="312" fill="#B8935A" font-size="9" font-family="Inter" letter-spacing="2">FEED: 80 IPM</text>
+          </svg>
+          <div class="hairline mt-4"></div>
+          <p class="mt-4 text-bone/70 italic font-serif text-sm">"The garage is the gallery. Process is part of the product."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- material marquee -->
+  <div class="border-y border-graphite/15 bg-linen/60 overflow-hidden">
+    <div class="marquee flex gap-12 py-5 whitespace-nowrap tracker text-graphite text-sm">
+      <span>· Cold Rolled Steel</span><span>· Black Walnut</span><span>· Aged Brass</span><span>· Aluminum 6061</span><span>· White Oak</span><span>· Copper Sheet</span><span>· Acrylic</span><span>· Cherry</span>
+      <span>· Cold Rolled Steel</span><span>· Black Walnut</span><span>· Aged Brass</span><span>· Aluminum 6061</span><span>· White Oak</span><span>· Copper Sheet</span><span>· Acrylic</span><span>· Cherry</span>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="shop" class="py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-end justify-between flex-wrap gap-6">
+      <div>
+        <div class="tracker text-ember">What we run</div>
+        <h2 class="display text-4xl sm:text-5xl mt-3 max-w-2xl leading-tight">A workshop that ships — built for the way you actually sell.</h2>
+      </div>
+      <p class="text-graphite max-w-sm">Stripe-native storefront, real shipping math, and a workflow that respects the chips on the floor.</p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="lift bg-linen p-8 border border-graphite/10">
+        <div class="w-12 h-12 ember-glow flex items-center justify-center text-bone display text-xl">01</div>
+        <h3 class="display text-2xl mt-6">Stripe, wired in.</h3>
+        <p class="mt-3 text-graphite text-sm leading-relaxed">Connect your account once. Checkout, taxes, payouts, and refunds run through Stripe — no third-party middleman skimming the work.</p>
+      </article>
+      <article class="lift bg-linen p-8 border border-graphite/10">
+        <div class="w-12 h-12 ember-glow flex items-center justify-center text-bone display text-xl">02</div>
+        <h3 class="display text-2xl mt-6">Products that breathe.</h3>
+        <p class="mt-3 text-graphite text-sm leading-relaxed">Drag-and-drop photo galleries, edition counts, material notes, signed-back numbering. Every piece gets the page it deserves.</p>
+      </article>
+      <article class="lift bg-linen p-8 border border-graphite/10">
+        <div class="w-12 h-12 ember-glow flex items-center justify-center text-bone display text-xl">03</div>
+        <h3 class="display text-2xl mt-6">Real shipping math.</h3>
+        <p class="mt-3 text-graphite text-sm leading-relaxed">Per-piece weight and dimensions feed live USPS/UPS rates. Crating notes for the heavy stuff. No surprise refunds at the box truck.</p>
+      </article>
+      <article class="lift bg-linen p-8 border border-graphite/10">
+        <div class="w-12 h-12 ember-glow flex items-center justify-center text-bone display text-xl">04</div>
+        <h3 class="display text-2xl mt-6">Custom commissions.</h3>
+        <p class="mt-3 text-graphite text-sm leading-relaxed">A quote-request flow tuned for makers — file uploads, material selection, milestone deposits, and a private project thread per client.</p>
+      </article>
+      <article class="lift bg-linen p-8 border border-graphite/10">
+        <div class="w-12 h-12 ember-glow flex items-center justify-center text-bone display text-xl">05</div>
+        <h3 class="display text-2xl mt-6">Inventory by edition.</h3>
+        <p class="mt-3 text-graphite text-sm leading-relaxed">Track what's cut, what's sitting on the bench, and what's spoken for. Auto-mark "1 of 12" as it sells through.</p>
+      </article>
+      <article class="lift bg-linen p-8 border border-graphite/10">
+        <div class="w-12 h-12 ember-glow flex items-center justify-center text-bone display text-xl">06</div>
+        <h3 class="display text-2xl mt-6">A studio dashboard.</h3>
+        <p class="mt-3 text-graphite text-sm leading-relaxed">Sales, lead times, top materials, customer notes, and pending commissions — all on one quiet page. No analytics theater.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="process" class="bg-forge text-bone py-28 relative overflow-hidden">
+  <div class="absolute inset-0 blueprint opacity-30"></div>
+  <div class="max-w-7xl mx-auto px-6 relative">
+    <div class="tracker text-brass">How it runs</div>
+    <h2 class="display text-4xl sm:text-5xl mt-3 max-w-3xl">From vector to doorstep — four passes of the bit.</h2>
+
+    <ol class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <li>
+        <div class="flex items-center gap-3">
+          <span class="display text-5xl text-brass">1</span>
+          <div class="flex-1 hairline"></div>
+        </div>
+        <h3 class="display text-2xl mt-5">Stage the file.</h3>
+        <p class="mt-3 text-bone/70 text-sm leading-relaxed">Upload product photos, set price, write the maker's note, choose the edition size. Save as draft until the chips settle.</p>
+      </li>
+      <li>
+        <div class="flex items-center gap-3">
+          <span class="display text-5xl text-brass">2</span>
+          <div class="flex-1 hairline"></div>
+        </div>
+        <h3 class="display text-2xl mt-5">Open the shop.</h3>
+        <p class="mt-3 text-bone/70 text-sm leading-relaxed">Publish and your storefront updates live. Stripe Checkout handles payment; sales tax is calculated for the buyer's address.</p>
+      </li>
+      <li>
+        <div class="flex items-center gap-3">
+          <span class="display text-5xl text-brass">3</span>
+          <div class="flex-1 hairline"></div>
+        </div>
+        <h3 class="display text-2xl mt-5">Cut, finish, sign.</h3>
+        <p class="mt-3 text-bone/70 text-sm leading-relaxed">Order lands in your queue with material, dimensions, and a printable shop ticket. Mark stages as you go: cut, sand, oil, signed.</p>
+      </li>
+      <li>
+        <div class="flex items-center gap-3">
+          <span class="display text-5xl text-brass">4</span>
+          <div class="flex-1 hairline"></div>
+        </div>
+        <h3 class="display text-2xl mt-5">Box it. Ship it.</h3>
+        <p class="mt-3 text-bone/70 text-sm leading-relaxed">Print labels at live rates, send the customer a tracking note with a photo of the finished piece on the bench. Done.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Commissions split -->
+<section id="commissions" class="py-28">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="relative">
+      <div class="absolute -inset-3 bg-ember/10 -rotate-1"></div>
+      <div class="relative bg-linen p-10 border border-graphite/15">
+        <div class="tracker text-graphite">Currently on the bench</div>
+        <h3 class="display text-3xl mt-3">Walnut + Brass Address Plate</h3>
+        <p class="mt-2 text-graphite text-sm">Edition of 12 · 14" × 4" · Hand-rubbed Danish oil</p>
+        <div class="hairline my-6"></div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex justify-between"><span>Roughing pass</span><span class="text-ember tracker">Done</span></li>
+          <li class="flex justify-between"><span>Finishing pass</span><span class="text-ember tracker">Done</span></li>
+          <li class="flex justify-between"><span>Brass inlay set</span><span class="text-graphite tracker">In progress</span></li>
+          <li class="flex justify-between"><span>Oil + signed back</span><span class="text-graphite tracker">Queued</span></li>
+        </ul>
+        <div class="mt-8 flex items-center justify-between">
+          <span class="display text-3xl">$<span>240</span></span>
+          <a href="#" class="tracker text-ember underline-ember">Reserve no. 09 →</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tracker text-ember">Commissions</div>
+      <h2 class="display text-4xl sm:text-5xl mt-3 leading-tight">Bring the drawing. <br/>We'll bring the bit.</h2>
+      <p class="mt-6 text-graphite leading-relaxed max-w-lg">
+        Designers, homeowners, and fellow makers send in sketches, DXFs, or napkin scribbles. We work through material, finish, and edition size together — then quote a fair number and a real timeline. No guessing games, no agency markup.
+      </p>
+      <ul class="mt-8 space-y-4">
+        <li class="flex gap-4"><span class="text-ember display">·</span><span><strong class="display">Studio visit, virtually.</strong> <span class="text-graphite">Walk the shop, see the stock, talk through the cut.</span></span></li>
+        <li class="flex gap-4"><span class="text-ember display">·</span><span><strong class="display">Milestone deposits.</strong> <span class="text-graphite">Pay as the work progresses — never a lump sum upfront.</span></span></li>
+        <li class="flex gap-4"><span class="text-ember display">·</span><span><strong class="display">Signed and numbered.</strong> <span class="text-graphite">Every commission gets a back-stamp and a certificate.</span></span></li>
+      </ul>
+      <a href="#cta" class="inline-block mt-10 px-7 py-4 bg-forge text-bone tracker hover:bg-walnut transition-colors">Start a Commission</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial / journal -->
+<section id="journal" class="py-24 bg-linen/70 border-y border-graphite/10">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <div class="tracker text-graphite">From the bench</div>
+    <p class="display italic text-3xl sm:text-4xl mt-6 leading-snug">
+      "It arrived double-boxed, oiled, and signed on the back in pencil. Felt like opening a letter, not a parcel. Three of my clients have asked who cut it."
+    </p>
+    <div class="hairline w-40 mx-auto my-8"></div>
+    <p class="tracker text-graphite">Maren Holcroft · Interior Designer, Asheville</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="py-28">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="relative overflow-hidden border border-forge/15">
+      <div class="absolute inset-0 ember-glow opacity-95"></div>
+      <div class="absolute inset-0 blueprint opacity-20"></div>
+      <div class="relative p-12 sm:p-16 text-bone">
+        <div class="tracker">Open the garage door</div>
+        <h2 class="display text-4xl sm:text-5xl mt-4 max-w-2xl leading-tight">
+          Run your CNC business the way you'd run your shop — quietly, carefully, on your terms.
+        </h2>
+        <p class="mt-5 max-w-xl text-bone/85">Stripe-connected storefront, commissions pipeline, edition tracking, and live shipping — all in one place. Built for one-person shops who'd rather be cutting.</p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a href="#shop" class="px-7 py-4 bg-forge text-bone tracker hover:bg-walnut transition-colors">Launch My Shop</a>
+          <a href="#process" class="px-7 py-4 border border-bone/60 text-bone tracker hover:bg-bone hover:text-forge transition-colors">See the Workflow</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-forge text-bone/70 py-14">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+    <div class="md:col-span-2">
+      <div class="display text-2xl text-bone">IRONLACE STUDIO</div>
+      <p class="mt-3 text-sm max-w-sm">A CNC garage shop turning raw stock into things you want to touch. Cut on the Shapeoko, finished by hand, shipped from the bench.</p>
+    </div>
+    <div>
+      <div class="tracker text-brass">Shop</div>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="#shop" class="hover:text-bone">Editions</a></li>
+        <li><a href="#commissions" class="hover:text-bone">Commissions</a></li>
+        <li><a href="#process" class="hover:text-bone">Process</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="tracker text-brass">Studio</div>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>hello@ironlace.studio</li>
+        <li>The Garage · PO Box 412</li>
+        <li>Asheville, NC</li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-bone/10 flex flex-wrap justify-between gap-4 text-xs tracker">
+    <span>© Ironlace Studio · All editions numbered</span>
+    <span>Precision cut · Artfully made</span>
+  </div>
+</footer>
+
+</body>
+</html>

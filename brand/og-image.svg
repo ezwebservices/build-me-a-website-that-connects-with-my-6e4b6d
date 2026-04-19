@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0E0F12"/>
+      <stop offset="100%" stop-color="#3E2A1E"/>
+    </linearGradient>
+    <linearGradient id="ember" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C2452D"/>
+      <stop offset="100%" stop-color="#B8935A"/>
+    </linearGradient>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F3EEE3" stroke-width="0.3" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Decorative toolpath rings, left -->
+  <g transform="translate(180,315)" opacity="0.9">
+    <rect x="-140" y="-140" width="280" height="280" fill="none" stroke="#B8935A" stroke-width="1" opacity="0.5"/>
+    <rect x="-100" y="-100" width="200" height="200" fill="none" stroke="#B8935A" stroke-width="1" opacity="0.7"/>
+    <rect x="-60" y="-60" width="120" height="120" fill="none" stroke="#C2452D" stroke-width="1.5"/>
+    <rect x="-30" y="-30" width="60" height="60" fill="none" stroke="#F3EEE3" stroke-width="1"/>
+    <circle cx="0" cy="0" r="8" fill="url(#ember)"/>
+    <line x1="0" y1="-180" x2="0" y2="-60" stroke="#C2452D" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="180" y1="0" x2="60" y2="0" stroke="#C2452D" stroke-width="1" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(440,230)" fill="#F3EEE3" font-family="Georgia, 'Times New Roman', serif">
+    <text x="0" y="0" font-size="22" letter-spacing="12" fill="#B8935A">CNC · GARAGE · STUDIO</text>
+    <text x="0" y="90" font-size="110" font-weight="400" letter-spacing="2">IRONLACE</text>
+    <text x="6" y="140" font-size="26" letter-spacing="18" fill="#E4DCCB">S T U D I O</text>
+    <line x1="0" y1="175" x2="640" y2="175" stroke="#B8935A" stroke-width="1"/>
+    <text x="0" y="215" font-size="28" font-style="italic" fill="#F3EEE3">Precision cut. Artfully made.</text>
+    <text x="0" y="260" font-size="18" letter-spacing="2" fill="#E4DCCB">Heirloom steel, walnut, and brass — shipped from the shop floor.</text>
+  </g>
+
+  <!-- Bottom signature bar -->
+  <line x1="80" y1="560" x2="1120" y2="560" stroke="#4A4D52" stroke-width="0.5"/>
+  <text x="80" y="595" font-family="Georgia, serif" font-size="14" letter-spacing="4" fill="#B8935A">EST · EDITIONED · SHOP-MADE</text>
+  <text x="1120" y="595" font-family="Georgia, serif" font-size="14" letter-spacing="4" fill="#B8935A" text-anchor="end">IRONLACESTUDIO</text>
+</svg>
